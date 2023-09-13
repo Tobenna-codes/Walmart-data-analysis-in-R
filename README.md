@@ -2,7 +2,7 @@
 
 [Download walmart_data.csv](https://github.com/Tobenna-codes/Walmart-data-analysis-in-R/blob/main/walmart_data.csv)
 
-[Download walmart_feature.csv](https://github.com/Tobenna-codes/Walmart-data-analysis-in-R/blob/main/walmart_features.csv)
+[Download walmart_features.csv](https://github.com/Tobenna-codes/Walmart-data-analysis-in-R/blob/main/walmart_features.csv)
 
 1.  Getting files from directories
 2.  Exploring the data
