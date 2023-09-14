@@ -54,13 +54,22 @@ wf_mean <- sapply(walmart_features, mean, na.rm = TRUE)
 
 # Creating a new column in the walmart_features table
 
-walmart_features$standardized_cpi <- (walmart_features$CPI - mean(walmart_features$CPI, na.rm = TRUE))/sd(walmart_features$CPI, na.rm = TRUE)
+walmart_features$standardized_cpi <- (walmart_features$CPI - mean(walmart_features$CPI, na.rm = TRUE))
+                                     / sd(walmart_features$CPI, na.rm = TRUE)
 
 walmart_features['standardized_cpi']
 
 # To produce a time series for sales for store 1 across all departments
 
-store_1 = walmart_data[walmart_data$Store == 1,]
+# Writing a function that returns specific stores and departments from our dataset
+
+get_store <- function(store_num, dept_num = walmart_data$Dept){
+  new_df <- walmart_data[walmart_data$Store == store_num
+                        & walmart_data$Dept == dept_num,]
+  return(new_df)
+}
+
+store_1 = get_store(1)
 
 store_1_sales <- aggregate(
                             store_1$Weekly_Sales,
@@ -80,7 +89,7 @@ lines(x = store_1_sales$Date,
 
 # Plotting total sales per week for store 20 using ggplot
 
-store_20 = walmart_data[walmart_data$Store == 20,]
+store_20 = get_store(20)
 
 store_20_sales <- aggregate(
           store_20$Weekly_Sales,
@@ -103,7 +112,7 @@ ggplot(data = store_20_sales,
 
 table(walmart_data$Dept)
 
-store_2 <- walmart_data[walmart_data$Store == 2,]
+store_2 <- get_store(2)
 
 sales_by_dept <- aggregate(
                           store_2$Weekly_Sales,
