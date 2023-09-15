@@ -132,3 +132,21 @@ ggplot(
         aes(x = Date, y = Weekly_Sales, group = Dept, color = as.factor(Dept))
       ) + geom_line() + labs(title = 'Top 5 Department Sales', color = 'Departments')
 
+# Writing a function that produces time series plot of stores by department
+
+get_store_plot <- function(store_num, dept_num){
+  new_df <- walmart_data[walmart_data$Store == store_num
+                        & walmart_data$Dept == dept_num,]
+ ( 
+ ggplot(data = new_df,
+        aes(x = as.Date(Date), y = Weekly_Sales, group = Dept, color = as.factor(Dept))) 
+        + geom_line() + xlab('Date') + ylab('Weekly Sales') + labs(color = 'Department') 
+        + geom_point()
+)
+}
+
+get_store_plot(5,1) + labs(title = 'Store 5 Dept Sales')
+
+get_store_plot(10,c(1,2)) + labs(title = 'Store 10 Dept Sales')
+
+get_store_plot(2,c(3,5,9,10)) + labs(title = 'Store 2 Dept Sales')
