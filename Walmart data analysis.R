@@ -4,9 +4,13 @@ library(readxl)
 
 library(ggplot2)
 
+# importing our data
+
 walmart_data <- read.csv('C:/Users/user/Downloads/R course source files/11 - Walmart Data Exercise/data/walmart_data.csv')
 
 walmart_features <- read.csv('C:/Users/user/Downloads/R course source files/11 - Walmart Data Exercise/data/walmart_features.csv')
+
+# understanding the structure and components of our data
 
 n_rows <- nrow(walmart_data)
 
@@ -19,6 +23,8 @@ walmart_data$Date = as.Date(walmart_data$Date)
 head(walmart_data, 5)
 
 sd(walmart_data$Weekly_Sales)
+
+# getting a table of our stores
 
 rows_per_store <- table(walmart_data$Store)
 
